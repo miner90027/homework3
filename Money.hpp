@@ -11,6 +11,16 @@
 
 class Money {
 
+public:
+	Money(int d, int c);
+	Money(double d = 0);
+
+	double getTotal();
+private:
+	double _totalCents;
+	double _dollars;
+	double _cents;
+
 };
 
 
