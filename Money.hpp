@@ -26,8 +26,6 @@ public:
 	Money & operator/=(const Money &rhs);
 private:
 	double _totalCents;
-	double _dollars;
-	double _cents;
 
 };
 

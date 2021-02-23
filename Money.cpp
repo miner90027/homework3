@@ -8,11 +8,11 @@
 #include <math.h>
 #include "Money.hpp"
 
-Money::Money(int d, int c): _dollars(d), _cents(c) {
-	if(_dollars < 0 && _cents >= 0)
-		_cents = -_cents;
+Money::Money(int d, int c) {
+	if(d < 0 && c >= 0)
+		c = -c;
 
-	_totalCents = (_dollars * 100) + _cents;
+	_totalCents = (d * 100) + c;
 }
 
 Money::Money(double d):_totalCents(round(d*100)) {
