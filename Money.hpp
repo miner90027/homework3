@@ -22,12 +22,16 @@ public:
 
 	Money & operator+=(const Money &rhs);
 	Money & operator-=(const Money &rhs);
+	Money & operator*=(const Money &rhs);
+
 private:
-	float _totalCents;
+	double _totalCents;
 	double _dollars;
 	double _cents;
 
 };
+
+Money operator*(Money lhs, const Money &rhs);
 
 bool operator!=(const Money &lhs, const Money &rhs);
 bool operator>(const Money &lhs, const Money &rhs);
