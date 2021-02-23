@@ -19,6 +19,7 @@ Money::Money(double d):_totalCents(d*100) {
 	_totalCents = round(_totalCents);
 }
 
-double Money::getTotal() {
-	return round(_totalCents) / 100;
+std::ostream &operator<<(std::ostream &os, const Money &mon) {
+	os << "$" << mon._totalCents / 100;
+	return os;
 }

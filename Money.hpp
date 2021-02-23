@@ -7,15 +7,15 @@
 
 #ifndef HOMEWORK3_MONEY_HPP
 #define HOMEWORK3_MONEY_HPP
-
+#include <iostream>
 
 class Money {
+	friend std::ostream & operator<< (std::ostream &os, const Money &mon);
 
 public:
 	Money(int d, int c);
 	Money(double d = 0);
 
-	double getTotal();
 private:
 	double _totalCents;
 	double _dollars;

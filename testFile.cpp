@@ -15,9 +15,9 @@ int main() {
 	Money tst(20.6679);
 	Money test(-30, 99);
 
-	cout << dollar.getTotal() << endl;
-	cout << mon.getTotal() << endl;
-	cout << tst.getTotal() << endl;
-	cout << test.getTotal() << endl;
+	cout << dollar << endl;
+	cout << mon << endl;
+	cout << tst << endl;
+	cout << test << endl;
 	return 0;
 }
