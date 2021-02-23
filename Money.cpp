@@ -52,6 +52,10 @@ Money &Money::operator*=(const Money &rhs) {
 	return *this = (_totalCents * rhs._totalCents) / 10000;
 }
 
+Money &Money::operator/=(const Money &rhs) {
+	return *this = (_totalCents / rhs._totalCents);
+}
+
 bool operator!=(const Money &lhs, const Money &rhs) {
 	return !(lhs == rhs);
 }
@@ -70,4 +74,8 @@ bool operator>=(const Money &lhs, const Money &rhs) {
 
 Money operator*(Money lhs, const Money &rhs) {
 	return lhs *= rhs;
+}
+
+Money operator/(Money lhs, const Money &rhs) {
+	return lhs /= rhs;
 }

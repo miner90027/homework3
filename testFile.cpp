@@ -15,8 +15,8 @@ int main() {
 	Money tst(20.6679);
 	Money test(-30, 99);
 
-	cout << mon * 10 << endl;
-	cout << mon * mon << endl;
-	cout << (test *= -1) << endl;
+	cout << mon / 10 << endl;
+	cout << mon / mon << endl;
+	cout << (test /= -1) << endl;
 	return 0;
 }

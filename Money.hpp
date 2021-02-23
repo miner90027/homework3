@@ -23,7 +23,7 @@ public:
 	Money & operator+=(const Money &rhs);
 	Money & operator-=(const Money &rhs);
 	Money & operator*=(const Money &rhs);
-
+	Money & operator/=(const Money &rhs);
 private:
 	double _totalCents;
 	double _dollars;
@@ -32,6 +32,7 @@ private:
 };
 
 Money operator*(Money lhs, const Money &rhs);
+Money operator/(Money lhs, const Money &rhs);
 
 bool operator!=(const Money &lhs, const Money &rhs);
 bool operator>(const Money &lhs, const Money &rhs);
