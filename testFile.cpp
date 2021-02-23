@@ -15,9 +15,11 @@ int main() {
 	Money tst(20.6679);
 	Money test(-30, 99);
 
-	cout << (dollar > 19) << endl;
-	cout << (mon != tst)<< endl;
-	cout << (tst == 20.67)<< endl;
-	cout << (test <= dollar) << endl;
+	cout << mon + tst << endl;
+	cout << tst - mon << endl;
+	cout << (dollar += 1) << endl;
+	cout << (dollar += 3) << endl;
+	cout << (dollar -= 2) << endl;
+	cout << (dollar -= 3) << endl;
 	return 0;
 }

@@ -32,6 +32,24 @@ bool operator<(const Money &lhs, const Money &rhs) {
 	return lhs._totalCents < rhs._totalCents;
 }
 
+Money operator+(const Money &lhs, const Money &rhs) {
+	return (lhs._totalCents + rhs._totalCents) / 100;
+}
+
+Money operator-(const Money &lhs, const Money &rhs) {
+	return (lhs._totalCents - rhs._totalCents) / 100;
+}
+
+Money &Money::operator+=(const Money &rhs) {
+
+	return *this = *this + rhs;
+}
+
+Money &Money::operator-=(const Money &rhs) {
+
+	return *this = *this - rhs;
+}
+
 bool operator!=(const Money &lhs, const Money &rhs) {
 	return !(lhs == rhs);
 }

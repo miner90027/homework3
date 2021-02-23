@@ -13,11 +13,15 @@ class Money {
 	friend std::ostream & operator<< (std::ostream &os, const Money &mon);
 	friend bool operator== (const Money &lhs, const Money &rhs);
 	friend bool operator< (const Money &lhs, const Money &rhs);
+	friend Money operator+(const Money &lhs, const Money &rhs);
+	friend Money operator-(const Money &lhs, const Money &rhs);
 
 public:
 	Money(int d, int c);
 	Money(double d = 0);
 
+	Money & operator+=(const Money &rhs);
+	Money & operator-=(const Money &rhs);
 private:
 	float _totalCents;
 	double _dollars;
