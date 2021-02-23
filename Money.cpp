@@ -15,11 +15,35 @@ Money::Money(int d, int c): _dollars(d), _cents(c) {
 	_totalCents = (_dollars * 100) + _cents;
 }
 
-Money::Money(double d):_totalCents(d*100) {
-	_totalCents = round(_totalCents);
+Money::Money(double d):_totalCents(round(d*100)) {
+
 }
 
 std::ostream &operator<<(std::ostream &os, const Money &mon) {
 	os << "$" << mon._totalCents / 100;
 	return os;
+}
+
+bool operator==(const Money &lhs, const Money &rhs) {
+	return lhs._totalCents == rhs._totalCents;
+}
+
+bool operator<(const Money &lhs, const Money &rhs) {
+	return lhs._totalCents < rhs._totalCents;
+}
+
+bool operator!=(const Money &lhs, const Money &rhs) {
+	return !(lhs == rhs);
+}
+
+bool operator>(const Money &lhs, const Money &rhs) {
+	return rhs < lhs;
+}
+
+bool operator<=(const Money &lhs, const Money &rhs) {
+	return !(lhs > rhs);
+}
+
+bool operator>=(const Money &lhs, const Money &rhs) {
+	return !(lhs < rhs);
 }

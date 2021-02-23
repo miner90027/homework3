@@ -11,17 +11,23 @@
 
 class Money {
 	friend std::ostream & operator<< (std::ostream &os, const Money &mon);
+	friend bool operator== (const Money &lhs, const Money &rhs);
+	friend bool operator< (const Money &lhs, const Money &rhs);
 
 public:
 	Money(int d, int c);
 	Money(double d = 0);
 
 private:
-	double _totalCents;
+	float _totalCents;
 	double _dollars;
 	double _cents;
 
 };
 
+bool operator!=(const Money &lhs, const Money &rhs);
+bool operator>(const Money &lhs, const Money &rhs);
+bool operator<=(const Money &lhs, const Money &rhs);
+bool operator>=(const Money &lhs, const Money &rhs);
 
 #endif //HOMEWORK3_MONEY_HPP
