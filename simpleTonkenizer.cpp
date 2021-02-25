@@ -27,18 +27,33 @@ vector<TokenAndPosition> readLines(istream &is);
 void printTokens(ostream &os, const vector<TokenAndPosition> &tokens);
 
 int main(int argc, char* argv[]) {
+	//checks to make sure the minimum number of arguments is entered
 	if(argc < 2){
 		cout << "No file input. Please specify a file to access." << endl;
 		return -1;
 	}
 
+	//read in the command line argument as either a file name or path & check to make sure it opens
 	ifstream fileIn(argv[1]);
-
 	if(!fileIn){
 		cout << "Could not open the specified file. If the file name doesn't work please specify the file path." << endl;
 		return -2;
 	}
 
+	//check to see if there is an argument after the file path. If there is & it is the command "--lineonly" set the print boolean to false
+	bool print = true;
+	if(argc == 3){
+		string lnOnly(argv[2]);
+		if(lnOnly == "--lineonly")
+			print = false;
+	}
+
+	vector<TokenAndPosition> tokens;
+
+	//print the tokens based on the state of the print boolean
+	if(print){
+		printTokens(cout, tokens);
+	}
 	return 0;
 }
 
