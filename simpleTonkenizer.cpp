@@ -27,6 +27,23 @@ vector<TokenAndPosition> readLines(istream &is);
 void printTokens(ostream &os, const vector<TokenAndPosition> &tokens);
 
 int main(int argc, char* argv[]) {
+	if(argc < 2){
+		cout << "No file input. Please specify a file to access." << endl;
+		return -1;
+	}
+
+	ifstream fileIn(argv[1]);
+
+	if(!fileIn){
+		cout << "Could not open the specified file. If the file name doesn't work please specify the file path." << endl;
+		return -2;
+	}
 
 	return 0;
+}
+
+void printTokens(ostream &os, const vector<TokenAndPosition> &tokens) {
+	for(auto i: tokens){
+		os << "Line\t" << i._line << ", Column\t" << i._column << ": \"" << i._token << "\"" << endl;
+	}
 }
