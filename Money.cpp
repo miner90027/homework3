@@ -12,15 +12,20 @@ Money::Money(int d, int c) {
 	if(d < 0 && c >= 0)
 		c = -c;
 
-	_totalCents = (d * 100) + c;
+	_totalCents = (round((d *100)+c))/100;
 }
 
-Money::Money(double d):_totalCents(round(d*100)) {
+Money::Money(double d):_totalCents((round(d*100))/100) {
 
 }
 
 std::ostream &operator<<(std::ostream &os, const Money &mon) {
-	os << "$" << (mon._totalCents / 100);
+	if(mon._totalCents == 0)
+		os << "$0.00";
+	else if(mon._totalCents < 0)
+		os << "-$" << (mon._totalCents * -1);
+	else
+		os << "$" << (mon._totalCents);
 	return os;
 }
 
@@ -33,11 +38,11 @@ bool operator<(const Money &lhs, const Money &rhs) {
 }
 
 Money operator+(const Money &lhs, const Money &rhs) {
-	return (lhs._totalCents + rhs._totalCents) / 100;
+	return (lhs._totalCents + rhs._totalCents);
 }
 
 Money operator-(const Money &lhs, const Money &rhs) {
-	return (lhs._totalCents - rhs._totalCents) / 100;
+	return (lhs._totalCents - rhs._totalCents);
 }
 
 Money &Money::operator+=(const Money &rhs) {
@@ -49,7 +54,7 @@ Money &Money::operator-=(const Money &rhs) {
 }
 
 Money &Money::operator*=(const Money &rhs) {
-	return *this = (_totalCents * rhs._totalCents) / 10000;
+	return *this = (_totalCents * rhs._totalCents);
 }
 
 Money &Money::operator/=(const Money &rhs) {
