@@ -61,7 +61,17 @@ int main(int argc, char* argv[]) {
 
 void printTokens(ostream &os, const vector<TokenAndPosition> &tokens) {
 	for(auto const &i: tokens){
-		os << "Line\t" << i._line << ", Column\t" << i._column << ": \"" << i._token << "\"" << endl;
+		int spaceL = 5;
+		int spaceC = 5;
+		for(int x = i._line; x > 0; x/=10, --spaceL){}
+		for(int x = i._column; x > 0; x/=10, --spaceC){}
+		os << "Line";
+		for(;spaceL > 0; --spaceL)
+			os << " ";
+		os << i._line << ", Column";
+		for(;spaceC > 0; --spaceC)
+			os << " ";
+		os << i._column << ": \"" << i._token << "\"" << endl;
 	}
 }
 
