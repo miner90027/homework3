@@ -12,6 +12,7 @@ using std::cout;
 using std::endl;
 using std::vector;
 using std::string;
+using std::getline;
 using std::ifstream;
 using std::ostream;
 using std::istream;
@@ -48,7 +49,8 @@ int main(int argc, char* argv[]) {
 			print = false;
 	}
 
-	vector<TokenAndPosition> tokens;
+	//create a vector of tokens to store what is returned by readLines()
+	vector<TokenAndPosition> tokens = readLines(fileIn);
 
 	//print the tokens based on the state of the print boolean
 	if(print){
@@ -61,4 +63,43 @@ void printTokens(ostream &os, const vector<TokenAndPosition> &tokens) {
 	for(auto i: tokens){
 		os << "Line\t" << i._line << ", Column\t" << i._column << ": \"" << i._token << "\"" << endl;
 	}
+}
+
+vector<string> lineToTokens(const string &line) {
+	vector<string> curLine;
+	string temp;
+	for(int i = 0, x = 0; i < line.size(); ++i){
+		//cout << line[i] << endl;
+		temp.push_back(line.at(i));
+		if(line.at(i) == ' ' || line.at(i) == '\n'){
+			curLine.push_back(temp);
+			temp = "";
+		}
+	}
+	curLine.push_back(temp);
+
+	return curLine;
+}
+
+vector<TokenAndPosition> readLines(istream &is) {
+	int lineCnt = 1;
+	string temp;
+	vector<TokenAndPosition> tokenVec;
+	TokenAndPosition nToken;
+
+	while(getline(is, temp)){
+		vector<string> curLine = lineToTokens(temp);
+		int collCnt = 1;
+		for(auto i: curLine){
+			if(i != "\0"){
+				nToken._column = collCnt;
+				collCnt += i.size();
+				nToken._line = lineCnt;
+				nToken._token = i;
+				tokenVec.push_back(nToken);
+			}
+		}
+		lineCnt++;
+	}
+	return tokenVec;
 }
