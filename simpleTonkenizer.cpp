@@ -72,6 +72,7 @@ vector<string> lineToTokens(const string &line) {
 		//cout << line[i] << endl;
 		temp.push_back(line.at(i));
 		if(line.at(i) == ' ' || line.at(i) == '\n'){
+			temp.erase(temp.end()-1);
 			curLine.push_back(temp);
 			temp = "";
 		}
@@ -93,7 +94,7 @@ vector<TokenAndPosition> readLines(istream &is) {
 		for(auto i: curLine){
 			if(i != "\0"){
 				nToken._column = collCnt;
-				collCnt += i.size();
+				collCnt += i.size()+1;
 				nToken._line = lineCnt;
 				nToken._token = i;
 				tokenVec.push_back(nToken);
