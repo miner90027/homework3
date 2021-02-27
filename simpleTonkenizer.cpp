@@ -8,6 +8,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "StopWatch.hpp"
 using std::cout;
 using std::endl;
 using std::vector;
@@ -49,6 +50,7 @@ int main(int argc, char* argv[]) {
 			print = false;
 	}
 
+	StopWatch timer;
 	//create a vector of tokens to store what is returned by readLines()
 	vector<TokenAndPosition> tokens = readLines(fileIn);
 
@@ -56,6 +58,8 @@ int main(int argc, char* argv[]) {
 	if(print){
 		printTokens(cout, tokens);
 	}
+	timer.stop();
+	cout << "Run time(milliseconds): " << timer.getTimeMilli() << endl;
 	return 0;
 }
 
