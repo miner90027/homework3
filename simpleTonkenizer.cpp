@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
 }
 
 void printTokens(ostream &os, const vector<TokenAndPosition> &tokens) {
-	for(auto i: tokens){
+	for(auto const &i: tokens){
 		os << "Line\t" << i._line << ", Column\t" << i._column << ": \"" << i._token << "\"" << endl;
 	}
 }
@@ -68,10 +68,9 @@ void printTokens(ostream &os, const vector<TokenAndPosition> &tokens) {
 vector<string> lineToTokens(const string &line) {
 	vector<string> curLine;
 	string temp;
-	for(int i = 0, x = 0; i < line.size(); ++i){
-		//cout << line[i] << endl;
-		temp.push_back(line.at(i));
-		if(line.at(i) == ' ' || line.at(i) == '\n'){
+	for(char i : line){
+		temp.push_back(i);
+		if(i == ' ' || i == '\n'){
 			temp.erase(temp.end()-1);
 			curLine.push_back(temp);
 			temp = "";
@@ -90,8 +89,8 @@ vector<TokenAndPosition> readLines(istream &is) {
 
 	while(getline(is, temp)){
 		vector<string> curLine = lineToTokens(temp);
-		int collCnt = 1;
-		for(auto i: curLine){
+		unsigned int collCnt = 1;
+		for(auto const &i: curLine){
 			if(i != "\0"){
 				nToken._column = collCnt;
 				collCnt += i.size()+1;
